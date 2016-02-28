@@ -1,0 +1,570 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{hyperref}
+\usepackage{amssymb,amsmath}
+
+% To make this come out properly in landscape mode, do one of the following
+% 1.
+%  pdflatex latexsheet.tex
+%
+% 2.
+%  latex latexsheet.tex
+%  dvips -P pdf  -t landscape latexsheet.dvi
+%  ps2pdf latexsheet.ps
+
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=0.7cm,left=0.7cm,right=0.7cm,bottom=0.7cm} }
+		{\geometry{top=0.7cm,left=0.7cm,right=0.7cm,bottom=0.7cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+ 
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\textbf{$\mathbb{MA}1505$ Cheat Sheet}} \\
+\end{center}
+
+\section{Functions}
+\begin{tabular}{@{}ll@{}}
+$(f \pm g)(x)=f(x)\pm g(x)$ & $\lim_{x\to a}(f\pm g)(x) = L \pm L'$ \\
+$(fg)(x) = f(x)g(x)$  & $\lim_{x\to a}(fg)(x) = LL'$ \\
+$(f/g)(x) = f(x)/g(x)$ & $\lim_{x\to a}\frac{f}{g}(x) = \frac{L}{L'}$ \\
+ & $\lim_{x\to a} kf(x) = kL, k\in \mathbb{R}$\\
+\end{tabular}
+All polynomials are continuous at every point in $\mathbb{R}$.
+All rational functions $\frac{p(x)}{q(x)}$ where $p$ and $q$ are polynomials are continuous at every point such that $q(x) \ne 0$.
+
+Composition is given by $\circ$, e.g. $(f\circ g)(x) = f(g(x))$
+
+\subsection{Differentiation}
+\begin{tabular}{@{}ll@{}}
+    Product Rule    & $(fg)'(x) = f'(x)g(x) + f(x)g'(x)$\\
+    Quotient Rule   & $\Big(\frac{f}{g}\Big)'(x) = \frac{f'(x)g(x)-f(x)g'(x)}{g^2(x)}$ \\
+    Chain Rule      & $(f\circ g)'(x) = f'(g(x))g'(x) = (f'\circ g)(x)g'(x)$ \\
+                    & $\frac{dy}{dt} = \frac{dy}{dx}\times\frac{dx}{dt}$\\
+\end{tabular}
+
+\subsubsection{Maxima and Minima}
+A function $f$ has a local/relative maximum value at a point $c$ in its domain if $f(x) \leq f(c)$ for all $x$ in the neighborhood of $c$.
+
+The function has an absolute maximum value at $c$ if $f(x) \leq f(c)$ for all $x$ in the domain.
+
+Reverse signs for minimum.
+
+\subsubsection{Extreme and Critical Points}
+Points where $f$ can have an extreme value are: interior points where $f'(x)=0$, interior points where $f'(x)$ does not exist and end points of the domain of $f$.
+
+An interior point of the domain of a function $f$ where $f'$ is zero or does not exist is a \emph{critical point} of $f$.
+
+\subsubsection{Increasing or Decreasing Functions}
+$f$ is increasing on an interval $I$ when $f'(x) > 0$ for all $x\in I$.
+
+$f$ is decreasing on an interval $I$ when $f'(x) < 0$ for all $x\in I$.
+
+\subsubsection{Concavity}
+The graph of $y=f(x)$ is concave down on any interval where $y''<0$ and concave up on any interval where $y''>0$.
+
+A point $c$ is a point of inflection of the function $f$ if $f$ is continuous at $c$ and there is an open interval containing $c$ such that the graph of $f$ changes from concave up (or down) to concave down (or up).
+The function need not be differentiable at $c$.
+
+\subsubsection{Derivative Tests for Maxima and Minima}
+\textbf{First derivative test:}
+Suppose $c\in(a,b)$ is a critical point of $f$.
+
+If $f'(x) > 0$ for $x \in (a,c)$ and $f'(x) < 0$ for $x\in (c,b)$ then $f(c)$ is a local maximum.
+
+If $f'(x) < 0$ for $x \in (a,c)$ and $f'(x) > 0$ for $x\in (c,b)$ then $f(c)$ is a local minimum.
+
+\textbf{Second derivative test:}
+If $f'(c) = 0$ and $f''(c) < 0$ then $f$ has a local maximum at $x=c$.
+
+If $f'(c) = 0$ and $f''(c) > 0$ then $f$ has a local minimum at $x=c$.
+
+\subsection{Indeterminacy and L'Hopital's Rule}
+If the functions $f$ and $g$ are continuous at $x=a$ but $f(a)=g(a)=0$, then the limit $\lim_{x\to a}\frac{f(x)}{g(x)}$ cannot be directly evaluated.
+
+Suppose that $f$ and $g$ are differentiable in a neighborhood of $a$, $f(a) = g(a) = 0$ and $g'(x) \ne 0$ except possibly at $a$.
+$$\lim_{x\to a} \frac{f(x)}{g(x)} = \lim_{x\to a} \frac{f'(x)}{g'(x)}$$
+
+\section{Integration}
+If $f$ is continuous on $[a,b]$, then
+$$F(x) = \int_a^x f(t) dt$$
+$$\frac{d}{dx} F(x) = \frac{d}{dx}\int_a^x f(t) dt = f(x)$$
+
+Integration by parts.
+
+$$\int u(x)v'(x) dx = u(x)v(x) - \int u'(x)v(x) dx$$
+
+Area between two curves $f_2(x)$ and $f_1(x)$ where $f_1(x) \leq f_2(x)$ in $[a,b]$
+$$\int_a^b f_2(x) - f_1(x) dx$$
+
+\subsection{Partial Fraction Decomposition}
+$$\frac{px+q}{(ax+b)(cx+d)} = \frac{A}{ax+b} + \frac{B}{cx+d}$$
+$$\frac{px^2+qx+r}{(ax+b)(cx+d)^2} = \frac{A}{ax+b} + \frac{B}{cx+d} + \frac{C}{(cx+d)^2}$$
+$$\frac{px^2+qx+r}{(ax+b)(x^2+c^2)} = \frac{A}{ax+b} + \frac{Bx+C}{x^2+c^2}$$
+
+% \subsection{Integrals}
+% \begin{tabular}{@{}rlr@{}}
+%     $f(x)$              & $\int f(x) dx$                    & \\
+%     $\frac{1}{x^2+a^2}$ & $\frac{1}{a}\arctan{\frac{x}{a}}$ & \\
+% \end{tabular}
+
+\section{Series}
+\subsection{Arithmetic Series}
+$$\sum_1^n a_n = \frac{n}{2}(a_1 + a_n)$$
+
+\subsection{Geometric Series}
+$$\sum_1^n ar^{n-1} = a\frac{1-r^n}{1-r}$$
+
+If $|r| < 1$ then as $n\to\infty$,
+$$\sum_1^n ar^{n-1} \to \frac{a}{1-r}$$
+
+\subsection{Ratio Test}
+For a series $\sum a_n$, let
+
+$$\lim_{n\to\infty} \Big| \frac{a_{n+1}}{a_n}\Big| = \rho$$
+
+Series is convergent if $\rho < 1$, divergent if $\rho > 1$ and no conclusion reached if $\rho = 1$.
+
+\subsection{Power Series}
+A power series has the form
+$$\sum_{n=0}^\infty c_nx^n = c_0 + c_1x + c_2x^2 + ... + c_nx^n + ...$$
+
+If the series is centered about $x=a$,
+$$\sum_{n=0}^\infty c_n(x-a)^n = c_0 + c_1(x-a) + c_2(x-a)^2 + ... + c_n(x-a)^n + ...$$
+
+\subsubsection{Standard Series}
+$$(1+x)^r = 1+rx+\frac{r(r-1)}{2!}x^2 + ... + \frac{r(r-1)...(r-n+1)}{n!}x^n$$
+$$\frac{1}{1-x} = 1 + x + x^2 + x^3 + ... + x^n + ... \text{for } |x| < 1$$
+$$e^x = 1+x+\frac{x^2}{2!}+\frac{x^3}{3!} + ... + \frac{x^n}{n!} + ...$$
+$$\sin{x} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - ... + \frac{(-1)^nx^{2n+1}}{(2n+1)!} + ...$$
+$$\cos{x} = 1-\frac{x^2}{2!} + \frac{x^4}{4!} - ... + \frac{(-1)^nx^{2n}}{(2r)!}$$
+$$\ln{(1+x)} = x -\frac{x^2}{2} + \frac{x^3}{3} - ... + \frac{(-1)^{n+1}x^n}{n} + ...$$
+
+\subsection{Radius of Convergence}
+$$\lim_{n\to\infty} \Big| \frac{u_{n+1}}{u_n} \Big| < 1$$
+
+\subsection{Taylor Series}
+$$\sum_{k=0}^\infty \frac{f^{(k)}(a)}{k!}(x-a)^k = f(a) + f'(a)(x-a) + ... + \frac{f^{(n)}(a)}{n!}(x-a)^n + ... $$
+
+\subsubsection{Taylor's Theorem}
+The $n$th order Taylor polynomial of $f$ at $a$ is given by
+$$P_n(x) = \sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k = f(a) + f'(a)(x-a) + ... + \frac{f^{(n)}(a)}{n!}(x-a)^n$$
+
+Then $f(x) = P_n(x) + R_n(x)$ where
+$$R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}$$
+for some $c$ between $a$ and $x$, where $R_n(x)$ is the remainder of order $n$ or the error term for the approximation of $f(x)$ by $P_n(x)$.
+
+\section{Three Dimensional Space $\mathbb{R}^3$}
+\subsection{Dot Product}
+$$\vec{v_1} \cdot \vec{v_2} =
+    \begin{pmatrix}
+        x_1 \\
+        y_1 \\
+        z_1 \\
+    \end{pmatrix}\cdot
+    \begin{pmatrix}
+        x_2 \\
+        y_2 \\
+        z_2 \\
+    \end{pmatrix}
+    = x_1x_2 + y_1y_2 + z_1z_2
+    = |\vec{v_1}|\: |\vec{v_2}| \cos{\theta} $$
+
+\subsection{Unit Vector}
+For some vector $\mathbf{u}$, its unit vector $\mathbf{\hat{u}} = \frac{1}{|\mathbf{u}|}\mathbf{u}$
+
+
+\subsection{Cross Product}
+$$\vec{v_1} \times \vec{v_2} =
+    \begin{pmatrix}
+        x_1 \\
+        y_1 \\
+        z_1 \\
+    \end{pmatrix}
+    \times
+    \begin{pmatrix}
+        x_2 \\
+        y_2 \\
+        z_2 \\
+    \end{pmatrix}
+    =\begin{pmatrix}
+        y_1z_2 - z_1y_2\\
+        -(x_1z_2 - z_1x_2)\\
+        x_1y_2 - y_1x_2\\
+    \end{pmatrix}
+    = |\vec{v_1}|\: |\vec{v_2}| \sin{\theta}$$
+
+The distance $\text{dist}$ from a point $P(x_0,y_0,z_0)$ to a plane $\Pi:ax+by+cz=d$ is given by
+$$\text{dist }=\frac{|ax_0+by_0+cz_0-d|}{\sqrt{a^2+b^2+c^2}}=\text{proj}_{\mathbf{n}}\vec{OP}$$
+
+\subsection{Space Curves}
+For some curve with the vector equation $\mathbf{r}(t) = f(t)\mathbf{i} + g(t)\mathbf{j} + h(t)\mathbf{k}$,
+
+its arc length (if the curve is traversed once)
+$$L = \int_a^b \sqrt{(f'(t))^2 + (g'(t))^2 + (h'(t))^2} dt = \int_a^b |\mathbf{r}'(t)|$$
+
+\section{Fourier Series}
+A function is said to be odd if $-f(x) = f(-x)$ and even if $f(x) = f(-x)$. Examples are $\sin{x}$ for the former and $\cos{x}$ for the latter.
+
+A periodic function of period $T$ can be represented by a Fourier series $f(x)$.
+$$f(x) = a_0 + \sum_{n=1}^\infty (a_n\cos{nx}+b_n\sin{nx})$$
+
+Let $2L=T$.
+$$a_0 = \frac{1}{2L} \int_{-L}^{L} f(x) dx$$
+
+For the $m$th term where $m\in\mathbb{Z}^+$,
+$$a_m = \frac{1}{L} \int_{-L}^{L} f(x) \cos{\frac{\pi mx}{L}} dx$$
+$$b_m = \frac{1}{L} \int_{-L}^{L} f(x) \sin{\frac{\pi mx}{L}} dx$$
+
+\textbf{If the function is even, we only need to consider cosine terms. Similarly, if the function is odd, we only need to consider sine terms.}
+
+\section{Multivariate Functions}
+\subsection{Partial Derivatives}
+Let $z = f(x,y)$ be a function of two variables.
+
+The \emph{partial derivative} of a function $f(x,y)$ w.r.t. $x$ is denoted by $f_x(x,y)$ or $\frac{\partial f}{\partial x}$ where the $y$ term is taken as a constant.
+
+$$f_{xx} = (f_x)_x = \frac{\partial^2f}{\partial x^2} \text{ and } f_{xy} = (f_x)_y = \frac{\partial^2f}{\partial x\partial y}$$
+$$f_{yy} = (f_y)_y = \frac{\partial^2f}{\partial y^2} \text{ and } f_{yx} = (f_y)_x = \frac{\partial^2f}{\partial x\partial y}$$
+
+For most functions in practice, $f_{xy}(a,b) = f_{yx}(a,b)$.
+
+\subsection{Chained Derivatives}
+Suppose $z=f(x,y,z)$ where $x=x(t)$, $y=y(t)$ and $z=z(t)$. Thus, $z = f(x(t),y(t),z(t))$.
+$$ \frac{dz}{dt} = \frac{\partial f}{\partial x}\frac{dx}{dt} + \frac{\partial f}{\partial y}\frac{dy}{dt} +\frac{\partial f}{\partial z}\frac{dz}{dt}$$
+
+Suppose $w=f(x,y,z)$ and $x=x(s,t)$, $y=y(s,t)$, and $z=z(s,t)$, giving $w=f(x(s,t),y(s,t),z(s,t))$
+$$ \frac{\partial w}{\partial s} = \frac{\partial f}{\partial x}\frac{\partial x}{\partial s} + \frac{\partial f}{\partial y}\frac{\partial y}{\partial s} + \frac{\partial f}{\partial z}\frac{\partial z}{\partial s}$$
+
+$$\frac{\partial w}{\partial t} = \frac{\partial f}{\partial x}\frac{\partial x}{\partial t} + \frac{\partial f}{\partial y}\frac{\partial y}{\partial t} + \frac{\partial f}{\partial z}\frac{\partial z}{\partial t}$$
+
+\subsection{Directional Derivatives}
+Note that $D_{\mathbf{i}} f(a,b) = f_x(a,b)$ and $D_{\mathbf{j}}f(a,b) = f_y(a,b)$ for the standard unit vectors of the $x$ and $y$ direction.
+
+For some \underline{unit vector} $\mathbf{\hat{u}} = u_1\mathbf{i} + u_2\mathbf{j}$,
+$$D_{\mathbf{u}}f(a,b) = f_x(a,b)\cdot u_1 + f_y(a,b)\cdot u_2 = \nabla f(a,b)\cdot \hat{\mathbf{u}}$$
+
+The directional derivative $D_{\mathbf{u}}f(a,b)$ measures the change in the value $df$ of a function $f$ when moved a distance $dt$ from the point $(a,b)$ in the direction of the vector $\mathbf{u}$, where $df = D_{\mathbf{u}}f(a,b)\cdot dt$.
+
+\subsection{Gradient Vector}
+The gradient vector $\nabla f$ is given by
+$$\nabla f = f_x\mathbf{i} + f_y\mathbf{j}$$
+$$D_{\mathbf{u}}f(a,b) = \nabla f(a,b)\cdot \mathbf{u} = |\nabla f(a,b)|\cos{\theta}$$
+
+The function $f$ increases most rapidly in the direction $\nabla f(a,b)$ and decreases most rapidly in the direction $-\nabla f(a,b)$.
+
+\subsection{Maxima and Minima}
+$f(x,y)$ has a local maximum at $(a,b)$ if $f(x,y) \leq f(a,b)$ for all points $(x,y)$ near $(a,b)$
+
+$f(x,y)$ has a local minimum at $(a,b)$ if $f(x,y) \geq f(a,b)$ for all points $(x,y)$ near $(a,b)$
+
+A function $f$ may have a local maximum or minimum at $(a,b)$ if: $f_x(a,b)=0$ and $f_y(a,b)=0$ \underline{or} $f_x(a,b)$ or $f_y(a,b)$ is not defined.
+A point that satisfies either condition is known as a \emph{critical point}.
+
+Suppose that $(a,b)$ is a critical point of $f(x,y)$. Let us define $D$ as
+$$D(a,b) = f_{xx}(a,b)f_{yy}(a,b)-[f_{xy}(a,b)]^2$$
+
+\begin{tabular}{@{}rl@{}}
+    $D>0$ and $f_{xx}(a,b)>0$   & relative minimum at $(a,b)$\\
+    $D>0$ and $f_{xx}(a,b)<0$   & relative maximum at $(a,b)$\\
+    $D<0$                       & saddle point at $(a,b)$\\
+    $D=0$                       & no conclusion reached\\
+\end{tabular}
+
+\subsubsection{Saddle Point}
+At a point $(a,b)$ of $f$ where $f_x(a,b) = 0$ and $f_y(a,b) = 0$, the point $(a,b)$ is known as a \emph{saddle point} of $f$ if there are some directions along which $f$ has a local maximum at $(a,b)$ and some directions along $f$ which has a local minimum at $(a,b)$.
+
+\subsection{Lagrange Multiplier}
+Suppose a function $f(x,y)$ subject to the constraint $g(x,y)$.
+$$F(x,y,\lambda) = f(x,y) - \lambda g(x,y)$$
+
+Solve for $F_x = 0$, $F_y = 0$ and $F_{\lambda} = 0$ to solve for $\lambda$.
+
+\section{Multiple Integrals}
+For $R = R_1 \cup R_2$ where $R_1$ and $R_2$ do not overlap except maybe at their boundary,
+$$\iint_R f(x,y) dA = \iint_{R_1}f(x,y) dA + \iint_{R_2}f(x,y) dA$$
+
+Suppose a rectangular region $R$ in the $xy$-plane where $a\leq x\leq b$ and $c\leq y\leq d$, then
+$$\iint_R f(x,y) dA = \int_c^d\int_a^b f(x,y)\:dx\:dy = \int_a^b\int_c^d f(x,y)\:dy\:dx$$
+
+\subsection{Type A Regions}
+Bottom and top boundaries are curves given by $y=g_1(x)$ and $y=g_2(x)$ respectively, while left and right boundaries are $x=a$ and $x=b$ respectively.
+$$R: g_1(x) \leq y \leq g_2(x),\:a\leq x\leq b$$
+$$\iint_R f(x,y)\:dA = \int_a^b\int_{g_1(x)}^{g_2(x)}f(x,y)\:dy\:dx$$
+
+\subsection{Type B Regions}
+Left and right boundaries are curves given by $x=h_1(y)$ and $x=h_2(y)$ and bottom and top boundaries are straight lines $y=c$ and $y=d$ respectively.
+$$R: c\leq y\leq d,\: h_1(y)\leq x\leq h_2(y)$$
+$$\iint_R f(x,y)\:dA = \int_c^d\int_{h_1(y)}^{h_2(y)}f(x,y)\:dx\:dy$$
+
+\subsection{Polar Coordinates}
+Circular regions/sectors can be described with polar coordinates $r$ and $\theta$.
+
+In general, a region $R$ in polar coordinates is described by
+$$R: a\leq r\leq b,\: \alpha\leq\theta\leq\beta$$
+
+When transforming from Cartesian to polar coordinates, $(x,y)$ is transformed to $(r,\theta)$ where
+$$x=r\cos{\theta} \text{ and } y=r\sin{\theta}$$
+and $dA$ is changed from $dx\:dy$ to $r\:dr\:d\theta$.
+
+\subsection{Application of Double Integrals}
+Suppose $D$ is a solid region under a surface defined by $f(x,y)$ over a plane region $R$.
+$$\text{Volume of $D$} = \iint_Rf(x,y)\:dA$$
+
+If $f$ has continuous first partial derivatives on a closed region $R$ of the $xy$-plane, then the area $S$ of that portion of the surface $z=f(x,y)$ that projects onto $R$ is given by
+$$S = \iint_R\sqrt{\Big( \frac{\partial z}{\partial x}\Big)^2 + \Big( \frac{\partial z}{\partial y} \Big)^2 + 1}\:dA$$
+
+\section{Line Integrals}
+\subsection{Vector Fields}
+A vector field on $R$ is a vector function $\mathbf{F}$ that assigns to each point a vector $\mathbf{F}(x,y,z)$.
+$$\mathbf{F}(x,y,z) = P(x,y,z)\mathbf{i} + Q(x,y,z)\mathbf{j} + R(x,y,z)\mathbf{k}$$
+
+\subsection{Gradient Fields}
+$$\nabla f(x,y,z) = f_x(x,y,z)\mathbf{i}+f_y(x,y,z)\mathbf{j} + f_z(x,y,z)\mathbf{k}$$
+
+\subsection{Conservative Fields}
+A vector field $\mathbf{F}$ is called a conservative vector field if it is the gradient of some scalar function $f$ such that $\mathbf{F} = \nabla f$, where $f$ is known as  the potential function for $\mathbf{F}$.
+
+Let $\mathbf{F}(x,y) = P(x,y)\mathbf{i} + Q(x,y)\mathbf{j}$ be a vector field on the $xy$-plane.
+$$\text{If }\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}\text{ then $\mathbf{F}$ is conservative.}$$
+
+Let $\mathbf{F}(x,y,z) = P(x,y,z)\mathbf{i} + Q(x,y,z)\mathbf{j} + R(x,y,z)\mathbf{k}$ be a vector field on $xyz$-space.
+$$\text{If } \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}, \frac{\partial P}{\partial z} = \frac{\partial R}{\partial x}, \frac{\partial Q}{\partial z} = \frac{\partial R}{\partial y}, \text{ then $\mathbf{F}$ is conservative.} $$
+
+If $\mathbf{F}$ is a conservative vector field, then $\int_C \mathbf{F}\cdot d\mathbf{r}$ is independent of the path taken.
+
+If $\mathbf{F}$ is a conservative vector field, then $\oint_l \mathbf{F}\cdot d\mathbf{r} = 0$ for any \underline{closed} curve $l$, i.e. a curve with a terminal point that coincides with its initial point.
+
+\subsection{Line Integrals of Scalar Functions}
+$$\int_Cf(x,y,z)\:ds = \int_a^b f(x(t),y(t),z(t)) ||\mathbf{r}'(t)|| dt$$
+$$=\int_a^b f(x(t),y(t),z(t))\sqrt{\Big(\frac{dx}{dt}\Big)^2 + \Big(\frac{dy}{dt}\Big)^2 + \Big(\frac{dz}{dt}\Big)^2}\: dt$$
+
+\subsection{Line Integrals of Vector Fields}
+$$\int_C\mathbf{F}\cdot\: d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t))\cdot \mathbf{r}'(t) dt$$
+
+Geometrically, the line integral of $\mathbf{F}$ over $C$ is summing up the tangential components of $\mathbf{F}$ with respect to the arc length of $C$.
+
+$$\int_{-C} f(x,y,z) ds = \int_C f(x,y,z) ds$$
+The vector equation of a curve $C$ determines the orientation or direction of $C$.
+
+For some $\mathbf{F}(x,y,z) = P(x,y)\mathbf{i} + Q(x,y)\mathbf{j} + R(x,y)\mathbf{k}$,
+$$ \int_C \mathbf{F}\cdot d\mathbf{r} = \int_C P dx + Q dy + R dz = \int_a^b P(\mathbf{r}(t))\frac{dx}{dt} + Q(\mathbf{r}(t))\frac{dy}{dt} dt$$
+
+\subsection{Fundamental Theorem for Line Integrals}
+If $f$ is a function of 2 or 3 variables whose gradient $\nabla f$ is continuous,
+$$\int_C \nabla f \cdot d\mathbf{r} = f(\mathbf{r}(b))-f(\mathbf{r}(a))$$
+
+\subsection{Green's Theorem}
+Let $D$ be a bounded region in the $xy$-plane and $\partial D$ the boundary of $D$. Suppose $P(x,y)$ and $Q(x,y)$ has continuous partial derivatives on $D$. Thus,
+$$\oint_{\partial D} P dx + Q dy = \iint_D \Big( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \Big) dA$$
+
+The orientation of $\partial D$ is such that, as one traverses along the boundary in this direction, the region $D$ is always on the left-hand side, i.e. the positive orientation of the boundary.
+
+\section{Surface Integrals}
+A parametric representation of a surface is given by
+$$\mathbf{r}(u,v) = x(u,v)\mathbf{i} + y(u,v)\mathbf{j} + z(u,v)\mathbf{k}$$
+
+\subsection{Standard Parametric Representation: Sphere}
+For a sphere of radius $a$: $x^2+y^2+z^2=a^2$
+$$\mathbf{r}(u,v) = (a\sin{u}\cos{v})\mathbf{i}+(a\sin{u}\sin{v})\mathbf{j} + (a\cos{u})\mathbf{k} $$
+
+When $0\leq u\leq\pi$ and $0\leq v\leq 2\pi$, the representation gives a full sphere.
+
+When $0\leq u\leq\frac{\pi}{2}$ and $0\leq v\leq 2\pi$, the representation gives the upper hemisphere.
+
+\subsection{Standard Parametric Representation: Cylinder}
+For a circular cylinder of radius $a$: $x^2+y^2=a^2$
+$$\mathbf{r}(u,v) = (a\cos{u})\mathbf{i} + (a\sin{u})\mathbf{j} + v\mathbf{k}$$
+
+Here, $u$ measures the angle from the positive $x$-axis about the $z$-axis while $v$ measures the height from the $xy$-plane along the cylinder.
+
+The same applies for $x^2+z^2=a^2$ (cylinder about $y$-axis)
+$$\mathbf{r}(u,v) = (a\cos{u})\mathbf{i} + v\mathbf{j} + (a\sin{u})\mathbf{k}$$
+
+and $y^2+z^2=a^2$ (cylinder about $x$-axis)
+$$\mathbf{r}(u,v) = v\mathbf{i} + (a\cos{u})\mathbf{j} + (a\sin{u})\mathbf{k}$$
+
+\subsection{Tangent Planes}
+Let $S$ be a surface given by the parametric representation
+$$\mathbf{r}(u,v) = x(u,v)\mathbf{i} + y(u,v)\mathbf{j} + z(u,v)\mathbf{k}$$
+
+For some position vector $\mathbf{r}_0 = \mathbf{r}(u_0,v_0)$ at a point $P_0$,
+
+Fixing $v=v_0$ for a resulting curve $C_1$, the tangent vector of the space curve $C_1$ is given by
+$$\mathbf{r}_u = \frac{\partial x}{\partial u}(u_0,v_0)\mathbf{i} + \frac{\partial y}{\partial u}(u_0,v_0)\mathbf{j} + \frac{\partial z}{\partial u}(u_0,v_0)\mathbf{k}$$
+
+Fixing $u=u_0$ for a resulting curve $C_2$, the tangent vector of the space curve $C_2$ is given by
+$$\mathbf{r}_v = \frac{\partial x}{\partial v}(u_0,v_0)\mathbf{i} + \frac{\partial y}{\partial v}(u_0,v_0)\mathbf{j} + \frac{\partial z}{\partial v}(u_0,v_0)\mathbf{k}$$
+
+Both vectors $\mathbf{r}_u$ and $\mathbf{r}_v$ lie in the tangent plane to $S$ at $P_0$.
+Thus, the cross product $\mathbf{r}_u \times \mathbf{r}_v$, assuming it is non-zero, provides a normal vector to the tangent plane to $S$ at $P_0$.
+
+The equation of the tangent plane is described by
+$$(\mathbf{r} - \mathbf{r}_0)\cdot(\mathbf{r}_u\times\mathbf{r}_v) = 0$$
+
+\subsection{Surface Integrals of Scalar Functions}
+Suppose $f(x,y,z)$ be a function defined on a surface $S$, where we can find $\mathbf{r}(u,v)=x(u,v)\mathbf{i}+y(u,v)\mathbf{j}+z(u,k)\mathbf{k}$ of $S$ over a domain $D$.
+$$\iint_S f(x,y,z)\:dS = \iint_D f(\mathbf{r}(u,v))|\mathbf{r}_u\times\mathbf{r}_v|\:dA$$
+
+\subsection{Surface Integrals of Vector Fields}
+Let $\mathbf{F}$ be a continuous vector fields defined on a surface $S$ with a unit normal vector $\mathbf{n}$.
+The surface integral of $\mathbf{F}$ over $S$ is given as
+$$\iint_S \mathbf{F}\cdot\mathbf{n}\:dS \text{ or more simply } \iint_S \mathbf{F}\cdot\: dS$$
+
+This integral is also known as the flux of $\mathbf{F}$ over $S$.
+
+If $S$ is given by a parametric representation $\mathbf{r} = \mathbf{r}(u,v)$ with domain $D$,
+$$\iint_S\mathbf{F}\cdot\:dS = \iint_D \mathbf{F}(\mathbf{r}(u,v))\cdot(\mathbf{r}_u\times\mathbf{r}_v)\:dA$$
+
+\subsection{Orientation of Surfaces}
+By convention, a curve has a positive orientation if it progresses counter-clockwise.
+
+$$\iint_{-S}\mathbf{F}\cdot\:dS = -\iint_S \mathbf{F}\cdot\:dS$$
+
+\subsubsection{The Little Man Analogy}
+Imagine a little man traversing a curve $C$.
+His head is pointed in the direction of the normal vector of $C$.
+$C$ thus has a positive orientation if the region bounded by the curve is always on his left-hand side.
+
+\subsection{Curl and Divergence}
+Let $\mathbf{F}=P\mathbf{i}+Q\mathbf{j}+R\mathbf{k}$ be a vector field in $xyz$-space.
+$$\text{curl }{\mathbf{F}} = \Big(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\Big)\mathbf{i} + \Big(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\Big)\mathbf{j} + \Big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\mathbf{k} $$
+
+The curl of a vector field is also itself a vector field.
+
+$$\text{div }\mathbf{F} = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}$$
+
+The divergence of a vector field is a scalar function.
+
+\subsection{Del Operator}
+$$\nabla = \frac{\partial}{\partial x}\mathbf{i} + \frac{\partial}{\partial y}\mathbf{j} + \frac{\partial}{\partial z}\mathbf{k} $$
+
+The curl and divergence operations can be expressed in terms of the del operator.
+$$\text{curl }\mathbf{F} = \nabla\times\mathbf{F} \text{ and } \text{div }\mathbf{F} = \nabla\cdot\mathbf{F}$$
+
+\subsection{Conservative Fields*}
+Let $\mathbf{F}$ be a vector field in $xyz$-space.
+
+If $\text{curl }\mathbf{F} = \mathbf{0}$, then $\mathbf{F}$ is a conservative field.
+The converse is also true.
+
+\subsection{Stokes' Theorem}
+Let $S$ be an oriented, piecewise-smooth surface that is bounded by a closed, piecewise-smooth boundary curve $C$.
+Let $\mathbf{F}$ be a vector field whose components have continuous partial derivatives on $S$. Then,
+$$\oint_C\mathbf{F}\cdot\:d\mathbf{r} = \iint_S (\text{curl }\mathbf{F})\cdot\:dS$$
+
+Stokes' Theorem can also be expressed as
+$$ \oint_C P\:dx+Q\:dy+R\:dz =  $$
+$$ \iint_S \Big( \frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}\Big)\,dy\,dz + \Big( \frac{\partial P}{\partial z} - \frac{\partial R}{\partial x}\Big)\,dz\,dx + \Big( \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\,dx\,dy $$
+
+The orientation of $C$ must be consistent with that of $S$.
+
+\subsection{Gauss' Theorem}
+Let $E$ be a solid region, $S$ be the boundary of $E$ given with outward orientation (where the normal vector on the surface always points away from $E$).
+Let $\mathbf{F}$ be a vector field whose component functions have continuous partial derivatives in $E$. Then,
+$$\iint_S \mathbf{F}\cdot\:d\mathbf{S} = \iiint_E \text{div }\mathbf{F}\:dV$$
+
+\section{Trigonometric Identities}
+\subsection{Pythagorean Identities}
+$$\sin^2{u} + \cos^2{u} = 1$$
+$$1+\tan^2{u} = \sec^2{u}$$
+$$1+\cot^2{u} = \csc^2{u}$$
+
+\subsection{Sum and Difference Formulae}
+$$\sin(u\pm v) = \sin{u}\cos{v} \pm \cos{u}\sin{v}$$
+$$\cos(u\pm v) = \cos{u}\cos{v} \mp \sin{u}\sin{v}$$
+$$\tan(u\pm v) = \frac{\tan{u}\pm\tan{v}}{1\mp\tan{u}\tan{v}}$$
+
+\subsection{Double Angle Formulae}
+$$\sin{2u} = 2\sin{u}\cos{u}$$
+$$\cos{2u} = \cos^2{u} - \sin^2{u} = 2\cos^2{u} - 1 = 1-2\sin^2{u}$$
+$$\tan{2u} = \frac{2\tan{u}}{1-\tan^2{u}}$$
+
+\subsection{Half Angle Identities}
+$$\sin^2{u} = \frac{1-\cos{2u}}{2}$$
+$$\cos^2{u} = \frac{1+\cos{2u}}{2}$$
+$$\tan^2{u} = \frac{1-\cos{2u}}{1+\cos{2u}}$$
+
+\subsection{Sum $\to$ Product Identities}
+$$\sin{u} + \sin{v} = 2\sin{\frac{u+v}{2}}\cos{\frac{u-v}{2}}$$
+$$\sin{u} - \sin{v} = 2\cos{\frac{u+v}{2}}\sin{\frac{u-v}{2}}$$
+$$\cos{u} + \cos{v} = 2\cos{\frac{u+v}{2}}\cos{\frac{u-v}{2}}$$
+$$\cos{u} - \cos{v} = -2\sin{\frac{u+v}{2}}\sin{\frac{u-v}{2}}$$
+
+\subsection{Product $\to$ Sum Identities}
+$$\sin{u}\sin{v} = \frac{1}{2} [\cos{(u-v)} - \cos{(u+v)}]$$
+$$\cos{u}\cos{v} = \frac{1}{2} [\cos{(u-v)} + \cos{(u+v)}]$$
+$$\sin{u}\cos{v} = \frac{1}{2} [\sin{(u+v)} + \sin{(u-v)}]$$
+$$\cos{u}\sin{v} = \frac{1}{2} [\sin{(u+v)} - \sin{(u-v)}]$$
+
+\subsection{Parity Identities}
+$$\sin{(-u)} = -\sin{u}$$
+$$\cos{(-u)} = \cos{u}$$
+$$\tan{(-u)} = -\tan{u}$$
+
+$$\cot{(-u)} = -\cot{u}$$
+$$\csc{(-u)} = -\csc{u}$$
+$$\sec{(-u)} = \sec{u}$$
+
+{\hfill \texttt{darren.wee@u.nus.edu}}
+
+{\hfill \texttt{Updated \today.}}
+\end{multicols}
+\end{document}
