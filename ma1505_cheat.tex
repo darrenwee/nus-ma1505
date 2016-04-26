@@ -5,6 +5,8 @@
 \usepackage[landscape]{geometry}
 \usepackage{hyperref}
 \usepackage{amssymb,amsmath}
+\usepackage{graphicx}
+\usepackage{multirow}
 
 % To make this come out properly in landscape mode, do one of the following
 % 1.
@@ -77,7 +79,7 @@
 \setlength{\columnsep}{2pt}
 
 \begin{center}
-     \Large{\textbf{$\mathbb{MA}1505$ Cheat Sheet}} \\
+     \Large{\textbf{$\mathbb{MA}1505$ Cheat Sheet}}\\\small{taken in AY 2015-2016 Semester I} \\
 \end{center}
 
 \section{Functions}
@@ -142,16 +144,27 @@ If the functions $f$ and $g$ are continuous at $x=a$ but $f(a)=g(a)=0$, then the
 Suppose that $f$ and $g$ are differentiable in a neighborhood of $a$, $f(a) = g(a) = 0$ and $g'(x) \ne 0$ except possibly at $a$.
 $$\lim_{x\to a} \frac{f(x)}{g(x)} = \lim_{x\to a} \frac{f'(x)}{g'(x)}$$
 
+L'Hopital's rule can be applied multiple times in succession, e.g. if $\frac{f'(x)}{g'(x)}$ is still indeterminate.
+
 \section{Integration}
 If $f$ is continuous on $[a,b]$, then
 $$F(x) = \int_a^x f(t) dt$$
 $$\frac{d}{dx} F(x) = \frac{d}{dx}\int_a^x f(t) dt = f(x)$$
 
-Integration by parts.
-
+\subsection{Integration by Parts}
 $$\int u(x)v'(x) dx = u(x)v(x) - \int u'(x)v(x) dx$$
 
-Area between two curves $f_2(x)$ and $f_1(x)$ where $f_1(x) \leq f_2(x)$ in $[a,b]$
+Decide which function is $u(x)$ with the LIATE rule in this order of priority:
+
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{|l@{ }c@{ }l@{ }c@{ }l@{ }c@{ }l@{ }c@{ }l|}
+	\hline
+	logarithmic & \multirow{2}{*}{$>$} & inverse trigo.& \multirow{2}{*}{$>$} & algebraic & \multirow{2}{*}{$>$} & trigo. 	& \multirow{2}{*}{$>$} & exponential \\
+	functions 	& & functions 	& & functions	& & functions & & functions \\\hline
+\end{tabular}}
+
+\subsection{Area Bounded by Two Curves}
+Area between two curves $f_2(x)$ and $f_1(x)$ where $f_1(x) \leq f_2(x)$ in $[a,b]$ is given by
 $$\int_a^b f_2(x) - f_1(x) dx$$
 
 \subsection{Partial Fraction Decomposition}
@@ -172,8 +185,8 @@ $$\sum_1^n a_n = \frac{n}{2}(a_1 + a_n)$$
 \subsection{Geometric Series}
 $$\sum_1^n ar^{n-1} = a\frac{1-r^n}{1-r}$$
 
-If $|r| < 1$ then as $n\to\infty$,
-$$\sum_1^n ar^{n-1} \to \frac{a}{1-r}$$
+If $|r| < 1$ then $ar^{n-1} \to 0$ as $n\to\infty$,
+$$\sum_1^\infty ar^{n-1} = \frac{a}{1-r}$$
 
 \subsection{Ratio Test}
 For a series $\sum a_n$, let
@@ -190,18 +203,22 @@ If the series is centered about $x=a$,
 $$\sum_{n=0}^\infty c_n(x-a)^n = c_0 + c_1(x-a) + c_2(x-a)^2 + ... + c_n(x-a)^n + ...$$
 
 \subsubsection{Standard Series}
-$$(1+x)^r = 1+rx+\frac{r(r-1)}{2!}x^2 + ... + \frac{r(r-1)...(r-n+1)}{n!}x^n$$
-$$\frac{1}{1-x} = 1 + x + x^2 + x^3 + ... + x^n + ... \text{for } |x| < 1$$
-$$e^x = 1+x+\frac{x^2}{2!}+\frac{x^3}{3!} + ... + \frac{x^n}{n!} + ...$$
-$$\sin{x} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - ... + \frac{(-1)^nx^{2n+1}}{(2n+1)!} + ...$$
-$$\cos{x} = 1-\frac{x^2}{2!} + \frac{x^4}{4!} - ... + \frac{(-1)^nx^{2n}}{(2r)!}$$
-$$\ln{(1+x)} = x -\frac{x^2}{2} + \frac{x^3}{3} - ... + \frac{(-1)^{n+1}x^n}{n} + ...$$
+\begin{align}
+	(1+x)^r & = 1+rx+\frac{r(r-1)}{2!}x^2 + ... + \frac{r(r-1)...(r-n+1)}{n!}x^n \nonumber \\
+	\frac{1}{1-x} & = 1 + x + x^2 + x^3 + ... + x^n + ... \text{for } |x| < 1 \nonumber \\
+	e^x & = 1+x+\frac{x^2}{2!}+\frac{x^3}{3!} + ... + \frac{x^n}{n!} + ... \nonumber \\
+	\sin{x} & = x - \frac{x^3}{3!} + \frac{x^5}{5!} - ... + \frac{(-1)^nx^{2n+1}}{(2n+1)!} + ... \nonumber \\
+	\cos{x} & = 1-\frac{x^2}{2!} + \frac{x^4}{4!} - ... + \frac{(-1)^nx^{2n}}{(2r)!} \nonumber \\
+	\ln{(1+x)} & = x -\frac{x^2}{2} + \frac{x^3}{3} - ... + \frac{(-1)^{n+1}x^n}{n} + ... \nonumber
+\end{align}
 
 \subsection{Radius of Convergence}
 $$\lim_{n\to\infty} \Big| \frac{u_{n+1}}{u_n} \Big| < 1$$
 
 \subsection{Taylor Series}
 $$\sum_{k=0}^\infty \frac{f^{(k)}(a)}{k!}(x-a)^k = f(a) + f'(a)(x-a) + ... + \frac{f^{(n)}(a)}{n!}(x-a)^n + ... $$
+
+A Maclaurin series is a special case of a Taylor series where $a=0$, i.e. is a Taylor series expansion of a function about $0$
 
 \subsubsection{Taylor's Theorem}
 The $n$th order Taylor polynomial of $f$ at $a$ is given by
@@ -212,6 +229,8 @@ $$R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}$$
 for some $c$ between $a$ and $x$, where $R_n(x)$ is the remainder of order $n$ or the error term for the approximation of $f(x)$ by $P_n(x)$.
 
 \section{Three Dimensional Space $\mathbb{R}^3$}
+From now onwards, any math character in bold face is a vector, e.g. $\mathbf{i},\mathbf{u}$
+
 \subsection{Dot Product}
 $$\vec{v_1} \cdot \vec{v_2} =
     \begin{pmatrix}
@@ -229,7 +248,6 @@ $$\vec{v_1} \cdot \vec{v_2} =
 
 \subsection{Unit Vector}
 For some vector $\mathbf{u}$, its unit vector $\mathbf{\hat{u}} = \frac{1}{|\mathbf{u}|}\mathbf{u}$
-
 
 \subsection{Cross Product}
 $$\vec{v_1} \times \vec{v_2} =
@@ -251,8 +269,8 @@ $$\vec{v_1} \times \vec{v_2} =
     \end{pmatrix}
     = |\vec{v_1}|\: |\vec{v_2}| \sin{\theta}$$
 
-The distance $\text{dist}$ from a point $P(x_0,y_0,z_0)$ to a plane $\Pi:ax+by+cz=d$ is given by
-$$\text{dist }=\frac{|ax_0+by_0+cz_0-d|}{\sqrt{a^2+b^2+c^2}}=\text{proj}_{\mathbf{n}}\vec{OP}$$
+The distance from a point $P(x_0,y_0,z_0)$ to a plane $\Pi:ax+by+cz=d$ is given by
+$$\text{dist}(P,\Pi) =\frac{|ax_0+by_0+cz_0-d|}{\sqrt{a^2+b^2+c^2}}=\text{proj}_{\mathbf{n}}\vec{OP}$$
 
 \subsection{Space Curves}
 For some curve with the vector equation $\mathbf{r}(t) = f(t)\mathbf{i} + g(t)\mathbf{j} + h(t)\mathbf{k}$,
@@ -261,10 +279,18 @@ its arc length (if the curve is traversed once)
 $$L = \int_a^b \sqrt{(f'(t))^2 + (g'(t))^2 + (h'(t))^2} dt = \int_a^b |\mathbf{r}'(t)|$$
 
 \section{Fourier Series}
-A function is said to be odd if $-f(x) = f(-x)$ and even if $f(x) = f(-x)$. Examples are $\sin{x}$ for the former and $\cos{x}$ for the latter.
+\subsection{Even or Odd?}
+\begin{tabular}{rl}
+	$-f(x) = f(-x)$ & function $f$ is odd \\
+	$f(x) = f(-x)$	& function $f$ is even \\
+\end{tabular}
 
+\subsection{Computing the Fourier Series}
 A periodic function of period $T$ can be represented by a Fourier series $f(x)$.
 $$f(x) = a_0 + \sum_{n=1}^\infty (a_n\cos{nx}+b_n\sin{nx})$$
+
+As the number of terms $n$ approaches infinity, the Fourier series begins to converge on the original function $f(x)$ more and more closely.
+A perfect approximation of $f(x)$ can only occur when $n\to\infty$
 
 Let $2L=T$.
 $$a_0 = \frac{1}{2L} \int_{-L}^{L} f(x) dx$$
@@ -274,6 +300,15 @@ $$a_m = \frac{1}{L} \int_{-L}^{L} f(x) \cos{\frac{\pi mx}{L}} dx$$
 $$b_m = \frac{1}{L} \int_{-L}^{L} f(x) \sin{\frac{\pi mx}{L}} dx$$
 
 \textbf{If the function is even, we only need to consider cosine terms. Similarly, if the function is odd, we only need to consider sine terms.}
+
+\subsection{Convergence of Fourier Series}
+Suppose $f(x)$ is a piecewise smooth periodic function on the interval $-L\leq x\leq L$ with a Fourier series $f_s(x)$
+$$f_s(x) = \left\{ \begin{array}{ll}
+			f(x) & \text{if } f \text{ is continuous at } x \\
+			\frac{1}{2}[f(x^-)+f(x^+)] & \text{if } f \text{ is not continuous at } x \\
+			\end{array}\right\}$$
+
+This is useful when evaluating the sum of the Fourier coefficients $a_0$, $a_n$ and $b_n$ for some $x=k,k\in\mathbb{R}$ in $f(x)$
 
 \section{Multivariate Functions}
 \subsection{Partial Derivatives}
@@ -478,17 +513,16 @@ By convention, a curve has a positive orientation if it progresses counter-clock
 
 $$\iint_{-S}\mathbf{F}\cdot\:dS = -\iint_S \mathbf{F}\cdot\:dS$$
 
-\subsubsection{The Little Man Analogy}
-Imagine a little man traversing a curve $C$.
-His head is pointed in the direction of the normal vector of $C$.
-$C$ thus has a positive orientation if the region bounded by the curve is always on his left-hand side.
+You can use the right-hand grip rule with the thumb pointed in the direction of the normal vector of $C$.
+The curve has a positive orientation if your grip from knucle to fingertips progresses counter-clockwise, or negative if otherwise.
 
-\subsection{Curl and Divergence}
+\subsection{Curl}
 Let $\mathbf{F}=P\mathbf{i}+Q\mathbf{j}+R\mathbf{k}$ be a vector field in $xyz$-space.
 $$\text{curl }{\mathbf{F}} = \Big(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\Big)\mathbf{i} + \Big(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\Big)\mathbf{j} + \Big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\mathbf{k} $$
 
 The curl of a vector field is also itself a vector field.
 
+\subsection{Divergence}
 $$\text{div }\mathbf{F} = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}$$
 
 The divergence of a vector field is a scalar function.
@@ -496,7 +530,7 @@ The divergence of a vector field is a scalar function.
 \subsection{Del Operator}
 $$\nabla = \frac{\partial}{\partial x}\mathbf{i} + \frac{\partial}{\partial y}\mathbf{j} + \frac{\partial}{\partial z}\mathbf{k} $$
 
-The curl and divergence operations can be expressed in terms of the del operator.
+The curl and divergence operations can be expressed in terms of the del operator using cross and dot product.
 $$\text{curl }\mathbf{F} = \nabla\times\mathbf{F} \text{ and } \text{div }\mathbf{F} = \nabla\cdot\mathbf{F}$$
 
 \subsection{Conservative Fields*}
@@ -565,6 +599,6 @@ $$\sec{(-u)} = \sec{u}$$
 
 {\hfill \texttt{darren.wee@u.nus.edu}}
 
-{\hfill \texttt{Updated \today.}}
+{\hfill \texttt{For MA1505 taken in AY2015/16 Sem. 1 \\\hfill \LaTeX{} compiled \today.}}
 \end{multicols}
 \end{document}
